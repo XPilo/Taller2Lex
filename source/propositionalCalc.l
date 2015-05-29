@@ -1,11 +1,18 @@
 %{
-#include "propositionalCalc.tab.h"
+#include "y.tab.h"
 %}
 
 %%
 
-"exit"        {return exit_command;}
+"print"           {return PRINT;}
+"exit"            {return EXIT;}
+[a-z]             {yylval = *yytext - 'a'; return VARIABLE;}
+[0-9]+            {yylval = atoi(yytext); return INTEGER;}
+[ \t]             ;
+[-+()=/*\n:]      {return *yytext;}
+
+.                 {ECHO; yyerror ("unexpected character");}
 
 %%
 
-int yywrap(void) { return 1; }
+int yywrap (void) {return 1;}
