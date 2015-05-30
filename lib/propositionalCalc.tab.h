@@ -42,7 +42,12 @@
      INTEGER = 258,
      VARIABLE = 259,
      PRINT = 260,
-     EXIT = 261
+     EXIT = 261,
+     TRUE = 262,
+     FALSE = 263,
+     EVAL = 264,
+     CONDITIONAL = 265,
+     IFF = 266
    };
 #endif
 
