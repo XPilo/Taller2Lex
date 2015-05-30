@@ -26,16 +26,27 @@ statement:
         ;
 
 expr:
-          term                    {$$ = $1;}
+          comparator              {$$ = $1;}
         | mathExpr                {$$ = $1;}
         ;
 
+comparator:
+          mathExpr '<' mathExpr      {$$ = ($1 < $3);}
+        | mathExpr '>' mathExpr      {$$ = ($1 > $3);}
+        | mathExpr '=' mathExpr      {$$ = ($1 == $3);}
+        | mathExpr '<' '=' mathExpr  {$$ = ($1 <= $4);}
+        | mathExpr '>' '=' mathExpr  {$$ = ($1 >= $4);}
+        | mathExpr '!' '=' mathExpr  {$$ = ($1 != $4);}
+        ;
+
 mathExpr:
-          expr '+' expr           {$$ = $1 + $3;}
-        | expr '-' expr           {$$ = $1 - $3;}
-        | expr '*' expr           {$$ = $1 * $3;}
-        | expr '/' expr           {$$ = $1 / $3;}
-        | '(' expr ')'            {$$ = $2;}
+          term                    {$$ = $1;}
+        | mathExpr '+' mathExpr   {$$ = $1 + $3;}
+        | mathExpr '-' mathExpr   {$$ = $1 - $3;}
+        | mathExpr '*' mathExpr   {$$ = $1 * $3;}
+        | mathExpr '/' mathExpr   {$$ = $1 / $3;}
+        | '(' mathExpr ')'        {$$ = $2;}
+        ;
 
 term:
           INTEGER                 {$$ = $1;}

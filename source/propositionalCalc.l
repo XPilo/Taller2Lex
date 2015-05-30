@@ -10,6 +10,7 @@
 [0-9]+            {yylval = atoi(yytext); return INTEGER;}
 [ \t]             ;
 [-+*/()\n:]       {return *yytext;}
+[<>=!]            {return *yytext;}
 
 .                 {ECHO; yyerror ("unexpected character");}
 
