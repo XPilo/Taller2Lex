@@ -1,5 +1,5 @@
 %{
-#include "y.tab.h"
+#include "propositionalCalc.tab.h"
 %}
 
 %%
@@ -9,7 +9,7 @@
 [a-z]             {yylval = *yytext - 'a'; return VARIABLE;}
 [0-9]+            {yylval = atoi(yytext); return INTEGER;}
 [ \t]             ;
-[-+()=/*\n:]      {return *yytext;}
+[-+*/()\n:]       {return *yytext;}
 
 .                 {ECHO; yyerror ("unexpected character");}
 

@@ -39,7 +39,10 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     exit_command = 258
+     INTEGER = 258,
+     VARIABLE = 259,
+     PRINT = 260,
+     EXIT = 261
    };
 #endif
 
