@@ -20,7 +20,13 @@ program:
          
 statement:
           expr
-        | PRINT expr              {printf("Printing %d\n", $2);}
+        | PRINT expr              {
+                                    if($2==1)
+                                      printf("true\n");
+                                    else
+                                      printf("false\n");
+                                    
+                                  }
         | EXIT                    {exit(EXIT_SUCCESS);}
         | VARIABLE ':' expr       {sym[$1] = $3;}
         ;

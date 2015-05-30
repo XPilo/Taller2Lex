@@ -1,5 +1,5 @@
 %{
-#include "propositionalCalc.tab.h"
+#include "y.tab.h"
 %}
 
 %%
